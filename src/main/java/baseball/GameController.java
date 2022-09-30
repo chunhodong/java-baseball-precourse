@@ -39,7 +39,7 @@ public class GameController {
             view.printRecord(record);
 
             //종료조건확인
-            boolean isEnd = false;
+            boolean isEnd = model.isEnd(record);
 
             //종료확인출력
             responseView(isEnd);

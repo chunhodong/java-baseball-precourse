@@ -10,6 +10,7 @@ import static baseball.ExceptionMessage.INVALID_GAMEBALL_SIZE;
 public class GameModel {
     private List<Integer> computerNumbers;
     private static final int GAMEBALL_SIZE = 3;
+    private static final int STRIKE_COUNT = 3;
 
 
     public void initGame(){
@@ -35,5 +36,7 @@ public class GameModel {
 
 
 
-
+    public boolean isEnd(GameRecord gameRecord) {
+        return gameRecord.getStrikeCount() == STRIKE_COUNT;
+    }
 }
