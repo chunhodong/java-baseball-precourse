@@ -28,6 +28,20 @@ public class GameController {
 
         while (onProgress()) {
 
+            //사용자입력
+            String userNumber = view.printInput();
+
+
+            //점수계산
+
+            //기록출력
+            view.printRecord();
+
+            //종료조건확인
+
+            //종료확인출력
+
+
         }
 
     }
