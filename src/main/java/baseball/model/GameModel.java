@@ -1,12 +1,13 @@
-package baseball;
+package baseball.model;
 
+import baseball.utils.Converter;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import static baseball.ExceptionMessage.INVALID_GAMEBALL_SIZE;
+import static baseball.exception.ExceptionMessage.INVALID_GAMEBALL_SIZE;
 
 
 public class GameModel {

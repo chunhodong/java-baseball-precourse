@@ -1,10 +1,10 @@
-package baseball;
+package baseball.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static baseball.ExceptionMessage.EMPTY_STRING;
-import static baseball.ExceptionMessage.OUT_OF_RANGE;
+import static baseball.exception.ExceptionMessage.EMPTY_STRING;
+import static baseball.exception.ExceptionMessage.OUT_OF_RANGE;
 
 public class Converter {
 

@@ -1,6 +1,10 @@
-package baseball;
+package baseball.controller;
 
-import static baseball.ExceptionMessage.INVALID_PROGRESS;
+import baseball.model.GameModel;
+import baseball.model.GameRecord;
+import baseball.view.GameView;
+
+import static baseball.exception.ExceptionMessage.INVALID_PROGRESS;
 
 public class GameController {
 
