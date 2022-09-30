@@ -17,12 +17,14 @@ public class GameModel {
     }
 
 
-    public String calculateScore(String userNumber) {
+    public GameRecord calculateScore(String userNumber) {
 
         List<Integer> userNumbers = Converter.stringToIntegerArray(userNumber);
         validateUserNumbers(userNumbers);
 
-        return null;
+        int strikeCount = 0;
+        int ballCount = 0;
+        return new GameRecord(strikeCount,ballCount);
 
     }
 
