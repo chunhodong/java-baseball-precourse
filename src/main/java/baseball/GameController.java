@@ -1,5 +1,7 @@
 package baseball;
 
+import static baseball.ExceptionMessage.INVALID_PROGRESS;
+
 public class GameController {
 
     private static final String START = "1";
@@ -46,9 +48,8 @@ public class GameController {
     }
 
     private void validateProgressInput(String resume) {
-        if (resume == null) throw new IllegalArgumentException();
-        if (!resume.equals(START) && !resume.equals(END)) throw new IllegalArgumentException();
-
+        if (resume == null) throw new IllegalArgumentException(INVALID_PROGRESS);
+        if (!resume.equals(START) && !resume.equals(END)) throw new IllegalArgumentException(INVALID_PROGRESS);
 
     }
 
