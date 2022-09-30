@@ -9,7 +9,7 @@ public class GameView {
         return Console.readLine();
     }
 
-    public void printRecord(String record){
+    public void printRecord(GameRecord record){
         System.out.println(record);
     }
 

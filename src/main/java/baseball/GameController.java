@@ -33,7 +33,7 @@ public class GameController {
 
 
             //점수계산
-            String record = null;
+            GameRecord record = model.calculateScore(userNumber);
 
             //기록출력
             view.printRecord(record);
