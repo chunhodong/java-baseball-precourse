@@ -1,5 +1,7 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +14,6 @@ public class GameModel {
     private static final int GAMEBALL_SIZE = 3;
     private static final int STRIKE_COUNT = 3;
 
-
     public void initGame(){
         computerNumbers = new ArrayList<>();
     }
@@ -23,10 +24,37 @@ public class GameModel {
         List<Integer> userNumbers = Converter.stringToIntegerArray(userNumber);
         validateUserNumbers(userNumbers);
 
-        int strikeCount = 0;
-        int ballCount = 0;
+        int strikeCount = countStrike(computerNumbers,userNumbers);
+        int ballCount = countBall(computerNumbers,userNumbers);
         return new GameRecord(strikeCount,ballCount);
 
+    }
+
+    private int countStrike(List<Integer> computerNumbers,List<Integer> userNumbers){
+
+        int strikeCount = 0;
+        for(int i = 0; i < computerNumbers.size(); i++){
+            strikeCount += checkStrike(computerNumbers.get(i),userNumbers.get(i));
+        }
+        return strikeCount;
+    }
+
+    private int checkStrike(int computerNumber,int userNumber){
+        return computerNumber == userNumber ? 1 : 0;
+    }
+
+    private int countBall(List<Integer> computerNumbers,List<Integer> userNumbers){
+        int ballNumber = 0;
+        for(int i = 0; i < computerNumbers.size(); i++){
+            ballNumber += checkBall(computerNumbers.get(i),i,userNumbers);
+        }
+        return ballNumber;
+    }
+
+    private int checkBall(int computerNumber,int index,List<Integer> userNumbers){
+
+        int position = userNumbers.indexOf(computerNumber);
+        return position != -1 && position != index ? 1 : 0;
     }
 
     private void validateUserNumbers(List<Integer> userNumbers){
