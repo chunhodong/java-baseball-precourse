@@ -33,13 +33,16 @@ public class GameController {
 
 
             //점수계산
+            String record = null;
 
             //기록출력
-            view.printRecord();
+            view.printRecord(record);
 
             //종료조건확인
+            boolean isEnd = false;
 
             //종료확인출력
+            responseView(isEnd);
 
 
         }
@@ -48,6 +51,14 @@ public class GameController {
 
     private boolean onProgress() {
         return isProgress;
+    }
+
+    private void responseView(boolean isEnd) {
+        if (isEnd) {
+            String resume = view.printResume();
+            switchProgress(resume);
+        }
+
     }
 
     private void switchProgress(String resume) {
