@@ -8,7 +8,7 @@ public class GameController {
     private static final String END = "2";
     private GameModel model;
     private GameView view;
-    private boolean isProgress;
+    private boolean isRunning;
 
 
     public GameController(GameModel model, GameView view) {
@@ -19,14 +19,25 @@ public class GameController {
 
     public void onStart() {
 
-        switchProgress(START);
+        onReady();
         onRunning();
 
     }
 
+    private void onReady(){
+        isRunning = true;
+        model.initGame();
+    }
+
+    private void onClose(){
+        isRunning = false;
+        view.printExit();
+    }
+
+
     private void onRunning() {
 
-        while (onProgress()) {
+        while (isRunning) {
 
             //사용자입력
             String userNumber = view.printInput();
@@ -49,26 +60,23 @@ public class GameController {
 
     }
 
-    private boolean onProgress() {
-        return isProgress;
-    }
 
     private void responseView(boolean isEnd) {
         if (isEnd) {
             String resume = view.printResume();
-            switchProgress(resume);
+            setProgress(resume);
         }
 
     }
 
-    private void switchProgress(String resume) {
+    private void setProgress(String resume) {
         validateProgressInput(resume);
 
         if(resume.equals(START)){
-            isProgress = true;
+            onReady();
         }
         if(resume.equals(END)){
-            isProgress = false;
+            onClose();
         }
     }
 

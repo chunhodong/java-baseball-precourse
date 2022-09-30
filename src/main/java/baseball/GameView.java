@@ -19,4 +19,7 @@ public class GameView {
         return Console.readLine();
     }
 
+    public void printExit() {
+        System.out.println("게임 종료");
+    }
 }
