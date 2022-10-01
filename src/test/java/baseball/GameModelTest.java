@@ -131,7 +131,7 @@ public class GameModelTest {
 
         //then
         assertThat(gameRecord.toString()).isEqualTo("1스트라이크");
-
+        mock.close();
     }
 
 

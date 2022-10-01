@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static baseball.exception.ExceptionMessage.EMPTY_STRING;
-import static baseball.exception.ExceptionMessage.OUT_OF_RANGE;
+import static baseball.exception.ExceptionMessage.NOT_ALLOW_CHARACTER;
 
 public class Converter {
 
@@ -25,6 +25,6 @@ public class Converter {
 
     private static void checkNumber(char c){
         if( c >= '1' && c <= '9')return;
-        throw new IllegalArgumentException(OUT_OF_RANGE);
+        throw new IllegalArgumentException(NOT_ALLOW_CHARACTER);
     }
 }
