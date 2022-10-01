@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import static baseball.exception.ExceptionMessage.INVALID_GAMEBALL_SIZE;
+import static baseball.exception.ExceptionMessage.NOT_ALLOW_CHARACTER;
 
 
 public class GameModel {
@@ -77,8 +78,17 @@ public class GameModel {
     }
 
     private void validateUserNumbers(List<Integer> userNumbers) {
+
         if (userNumbers.size() != GAMEBALL_SIZE) throw new IllegalArgumentException(INVALID_GAMEBALL_SIZE);
         if (new HashSet(userNumbers).size() != GAMEBALL_SIZE) throw new IllegalArgumentException(INVALID_GAMEBALL_SIZE);
+        for(int i = 0; i < userNumbers.size(); i++){
+            checkNumber(userNumbers.get(i));
+        }
+    }
+
+    private static void checkNumber(int number){
+        if( number >= 1 && number <= 9)return;
+        throw new IllegalArgumentException(NOT_ALLOW_CHARACTER);
     }
 
 

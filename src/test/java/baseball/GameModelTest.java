@@ -68,9 +68,9 @@ public class GameModelTest {
         GameModel gameModel = new GameModel();
 
         //when,then
-        assertThatThrownBy(() -> gameModel.calculateScore("115"))
+        assertThatThrownBy(() -> gameModel.calculateScore("032"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INVALID_GAMEBALL_SIZE);
+                .hasMessageContaining(ExceptionMessage.NOT_ALLOW_CHARACTER);
 
     }
 
