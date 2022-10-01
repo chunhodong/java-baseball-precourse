@@ -18,7 +18,7 @@ public class GameRecord{
     @Override
     public String toString() {
         if(strikeCount > 0 && ballCount > 0){
-            return String.format("%d볼 %d스트라이크",strikeCount,ballCount);
+            return String.format("%d볼 %d스트라이크",ballCount,strikeCount);
         }
         if(strikeCount > 0){
             return String.format("%d스트라이크",strikeCount);

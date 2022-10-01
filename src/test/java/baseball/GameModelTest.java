@@ -127,12 +127,72 @@ public class GameModelTest {
         gameModel.initGame();
 
         //when
-        GameRecord gameRecord = gameModel.calculateScore("461");
+        GameRecord gameRecord = gameModel.calculateScore("568");
 
         //then
-        assertThat(gameRecord.toString()).isEqualTo("1스트라이크");
+        assertThat(gameRecord.toString()).isEqualTo("3스트라이크");
         mock.close();
     }
+
+    @Test
+    @DisplayName("점수계산에서 볼만있으면 리턴값에 볼만포함")
+    void returns_ball_only_when_params_include_ball() {
+        //given
+        MockedStatic<Randoms> mock = mockStatic(Randoms.class);
+        mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                .thenReturn(5, Arrays.stream(new Integer[]{6,8}).toArray());
+        GameModel gameModel = new GameModel();
+        gameModel.initGame();
+
+        //when
+        GameRecord gameRecord = gameModel.calculateScore("843");
+
+        //then
+        assertThat(gameRecord.toString()).isEqualTo("1볼");
+        mock.close();
+    }
+
+    @Test
+    @DisplayName("점수계산에서 스트라이크랑볼 포함이면 리턴값에 둘다포함")
+    void returns_strike_ball_when_params_include_strike_and_ball() {
+        //given
+        MockedStatic<Randoms> mock = mockStatic(Randoms.class);
+        mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                .thenReturn(5, Arrays.stream(new Integer[]{6,8}).toArray());
+        GameModel gameModel = new GameModel();
+        gameModel.initGame();
+
+        //when
+        GameRecord gameRecord = gameModel.calculateScore("586");
+
+        //then
+        assertThat(gameRecord.toString()).isEqualTo("2볼 1스트라이크");
+        mock.close();
+
+    }
+
+    @Test
+    @DisplayName("점수계산에서 일치하는게없으면 낫싱")
+    void returns_nothing_when_params_not_include_any() {
+        //given
+        MockedStatic<Randoms> mock = mockStatic(Randoms.class);
+        mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                .thenReturn(5, Arrays.stream(new Integer[]{6,8}).toArray());
+        GameModel gameModel = new GameModel();
+        gameModel.initGame();
+
+        //568
+
+        //586
+
+        //when
+        GameRecord gameRecord = gameModel.calculateScore("173");
+
+        //then
+        assertThat(gameRecord.toString()).isEqualTo("낫싱");
+        mock.close();
+    }
+
 
 
 
