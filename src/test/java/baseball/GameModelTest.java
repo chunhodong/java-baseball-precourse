@@ -57,7 +57,20 @@ public class GameModelTest {
         //when,then
         assertThatThrownBy(() -> gameModel.calculateScore("12a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.OUT_OF_RANGE);
+                .hasMessageContaining(ExceptionMessage.NOT_ALLOW_CHARACTER);
+
+    }
+
+    @Test
+    @DisplayName("점수계산에서 숫자가 1에서 9사이가 아니면 예외발생")
+    void throws_exception_when_params_outofrange() {
+        //given
+        GameModel gameModel = new GameModel();
+
+        //when,then
+        assertThatThrownBy(() -> gameModel.calculateScore("115"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.INVALID_GAMEBALL_SIZE);
 
     }
 
@@ -87,6 +100,7 @@ public class GameModelTest {
 
     }
 
+
     @Test
     @DisplayName("점수계산에서 3자리 수 입력하면 점수객체리턴")
     void returns_record_when_params_numbersize_3() {
@@ -101,6 +115,25 @@ public class GameModelTest {
         assertThat(gameRecord).isNotNull();
 
     }
+
+    @Test
+    @DisplayName("점수계산에서 스트라이크만있으면 리턴값에 스트라이크만포함")
+    void returns_stirke_only_when_params_include_strike() {
+        //given
+        MockedStatic<Randoms> mock = mockStatic(Randoms.class);
+        mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                .thenReturn(5, Arrays.stream(new Integer[]{6,8}).toArray());
+        GameModel gameModel = new GameModel();
+        gameModel.initGame();
+
+        //when
+        GameRecord gameRecord = gameModel.calculateScore("461");
+
+        //then
+        assertThat(gameRecord.toString()).isEqualTo("1스트라이크");
+
+    }
+
 
 
     @Test
